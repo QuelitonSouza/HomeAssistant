@@ -1,0 +1,20 @@
+﻿
+--Setar o caminho
+cd C:\Windows\Microsoft.NET\Framework\v4.0.30319
+
+-- Desinstalar o serviço em modo debug
+Installutil /u "E:\WorkSpace\HomeAssistant\HomeAssistant.Windows\bin\Debug\HomeAssistant.Windows.exe"
+
+-- Instalar o serviço em modo debug
+Installutil "E:\WorkSpace\HomeAssistant\HomeAssistant.Windows\bin\Debug\HomeAssistant.Windows.exe"
+
+
+
+--Setar o caminho
+cd C:\Windows\Microsoft.NET\Framework\v4.0.30319
+
+-- Desinstalar o serviço em modo debug
+Installutil /u "E:\WorkSpace\HomeAssistant\HomeAssistant.Windows\bin\Release\HomeAssistant.Windows.exe"
+
+-- Instalar o serviço em modo debug
+Installutil "E:\WorkSpace\HomeAssistant\HomeAssistant.Windows\bin\Release\HomeAssistant.Windows.exe"
