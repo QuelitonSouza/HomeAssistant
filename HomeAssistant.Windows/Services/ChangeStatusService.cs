@@ -35,9 +35,9 @@ namespace HomeAssistant.Windows.Services
 			PowerStatus pwr = SystemInformation.PowerStatus;
 			var BatteryStatus = pwr.BatteryChargeStatus.ToString();
 
-			if (pwr.BatteryLifePercent <= 0.12)
+			if (pwr.BatteryLifePercent <= 0.15)
 			{
-				if (pwr.PowerLineStatus == PowerLineStatus.Offline && !BatteryStatus.Contains(BatteryChargeStatus.Charging.ToString()) )
+				if (pwr.PowerLineStatus == PowerLineStatus.Offline)
 				{
 					return ChangeStatusSwitch(StatusDeviceEnum.on);
 				}
