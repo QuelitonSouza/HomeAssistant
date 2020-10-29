@@ -1,4 +1,6 @@
+![GitHub Logo](/HomeAssistant/HomeAssistant.Windows/Img/home.ico)
 # HomeAssistant
+
 ## Objective
 Maximize the battery life of the notebook by turning the charger off and on as the user prefers.
 ## Technology
