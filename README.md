@@ -1,4 +1,4 @@
-![GitHub Logo](https://quelitonsouza.github.io/image/foto.jpg)
+
 # HomeAssistant
 
 ## Objective
@@ -16,6 +16,7 @@ Battery ->> Service : True
 Service ->> Api: Off Or On
 Api ->> Switch: Off Or On
 ```
+![Flow](https://github.com/QuelitonSouza/QuelitonSouza.github.io/blob/master/image/fluxo_en.png)
 
 
 # HomeAssistant
@@ -35,6 +36,7 @@ Bateria->> Serviço: True
 Serviço->> Api: Off Or On
 Api ->> Tomada: Off Or On
 ```
+![Fluxo](https://github.com/QuelitonSouza/QuelitonSouza.github.io/blob/master/image/fluxo_pt.png)
 
 # Referencias
 https://github.com/ndg63276/smartlife/blob/master/functions.js
