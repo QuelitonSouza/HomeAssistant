@@ -1,7 +1,7 @@
 # HomeAssistant
 Projeto IoT
 
-#referencias
+# Referencias
 https://github.com/ndg63276/smartlife/blob/master/functions.js
 https://github.com/codetheweb/tuyapi/issues/20
 https://e.tuya.com/smartlife
