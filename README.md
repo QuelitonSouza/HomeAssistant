@@ -1,4 +1,4 @@
-![GitHub Logo](/HomeAssistant/HomeAssistant.Windows/Img/home.ico)
+![GitHub Logo](https://github.com/QuelitonSouza/HomeAssistant/tree/master/HomeAssistant.Windows/Img/home.ico)
 # HomeAssistant
 
 ## Objective
