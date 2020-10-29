@@ -2,6 +2,7 @@
 using HomeAssistant.Windows.Config;
 using System.Windows.Forms;
 using HomeAssistant.Windows.Dto;
+using System;
 
 namespace HomeAssistant.Windows.Services
 {
@@ -37,25 +38,36 @@ namespace HomeAssistant.Windows.Services
 
 		public bool MonitorBatery()
 		{
-			confgis = new WriterAndReadConfigs().ReadConfigs();
-			PowerStatus pwr = SystemInformation.PowerStatus;
-
-			if (pwr.BatteryLifePercent <= confgis.BatteryLifePercentLow)
+			try
 			{
-				if (confgis.LastStateDevice == StatusDeviceEnum.off)
+				new WriterAndReadConfigs().WriterLog("Inicio");
+				confgis = new WriterAndReadConfigs().ReadConfigs();
+				PowerStatus pwr = SystemInformation.PowerStatus;
+
+				if (pwr.BatteryLifePercent <= confgis.BatteryLifePercentLow)
 				{
-					return ChangeStatusSwitch(StatusDeviceEnum.on);
+					if (confgis.LastStateDevice == StatusDeviceEnum.off)
+					{
+						new WriterAndReadConfigs().WriterLog("Ligar");
+						return ChangeStatusSwitch(StatusDeviceEnum.on);
+					}
+				}
+
+				if (pwr.BatteryLifePercent >= confgis.BatteryLifePercentHigh)
+				{
+					if (confgis.LastStateDevice == StatusDeviceEnum.on)
+					{
+						new WriterAndReadConfigs().WriterLog("Desligar");
+						return ChangeStatusSwitch(StatusDeviceEnum.off);
+					}
 				}
 			}
-
-			if (pwr.BatteryLifePercent >= confgis.BatteryLifePercentHigh)
+			catch (Exception ex)
 			{
-				if (confgis.LastStateDevice == StatusDeviceEnum.on)
-				{
-					return ChangeStatusSwitch(StatusDeviceEnum.off);
-				}
+				new WriterAndReadConfigs().WriterLog(ex.Message);
 			}
 
+			new WriterAndReadConfigs().WriterLog("Fim");
 			return false;
 		}
 	}

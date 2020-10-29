@@ -1,4 +1,5 @@
 ﻿using HomeAssistant.Windows.Dto;
+using HomeAssistant.Windows.Enums;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +11,9 @@ namespace HomeAssistant.Windows.Services
 	{
 		public void WriterConfigs(DtoConfigs dto)
 		{
-			using (StreamWriter writer = new StreamWriter("configs.json"))
+			var path = new CreateAndValidPath().CreateFolder();
+			var file = string.Format("{0}configs.json", path);
+			using (StreamWriter writer = new StreamWriter(file))
 			{
 				var json = Newtonsoft.Json.JsonConvert.SerializeObject(dto);
 				writer.Write(json);
@@ -18,10 +21,23 @@ namespace HomeAssistant.Windows.Services
 			}
 		}
 
+		public void WriterLog(string logMessage)
+		{
+			var path = new CreateAndValidPath().CreateFolder(PathsEnum.pathLog);
+			var nomeFile = string.Format("{0}LOG_{1}.txt", path, DateTime.Now.ToString("ddMMyyyy"));
+			using (StreamWriter writer = new StreamWriter(nomeFile, append: true))
+			{
+				string message = string.Format("{0} - {1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), logMessage);
+				writer.WriteLine(message);
+				writer.Close();
+			}
+		}
+
 		public DtoConfigs ReadConfigs()
 		{
 			DtoConfigs result = null;
-			string file = "configs.json";
+			var path = new CreateAndValidPath().CreateFolder();
+			var file = string.Format("{0}configs.json", path);
 			if (File.Exists(file))
 			{
 				using (StreamReader read = new StreamReader(file))

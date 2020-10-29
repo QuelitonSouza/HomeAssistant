@@ -14,16 +14,18 @@ namespace HomeAssistant.Windows
 			InitializeComponent();
 		}
 
+#if DEBUG
 		public void Start(string[] args)
 		{
 			OnStart(args);
 		}
+#endif
 
 		protected override void OnStart(string[] args)
 		{
-			timer = new System.Timers.Timer();
-			timer.Interval = 30000; // 30 seconds
-			timer.Elapsed += new ElapsedEventHandler(this.OnTimer);
+			timer = new System.Timers.Timer(15000);
+			this.timer.AutoReset = true;
+			this.timer.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimer);
 			timer.Start();
 		}
 
