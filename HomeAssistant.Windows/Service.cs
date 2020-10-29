@@ -14,6 +14,11 @@ namespace HomeAssistant.Windows
 			InitializeComponent();
 		}
 
+		public void Start(string[] args)
+		{
+			OnStart(args);
+		}
+
 		protected override void OnStart(string[] args)
 		{
 			timer = new System.Timers.Timer();

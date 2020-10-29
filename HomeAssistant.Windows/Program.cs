@@ -16,12 +16,21 @@ namespace HomeAssistant.Windows
 	{
 		static void Main(string[] args)
 		{
+
+
+#if (DEBUG)
+            Service service = new Service();
+            service.Start(args);
+            Thread.Sleep(Timeout.Infinite);
+            service.Stop();
+#else
 			ServiceBase[] ServicesToRun;
 			ServicesToRun = new ServiceBase[]
 			{
 				new Service()
 			};
 			ServiceBase.Run(ServicesToRun);
+#endif
 		}
 	}
 }

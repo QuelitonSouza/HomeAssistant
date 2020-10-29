@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Config\WebClientApi.cs" />
     <Compile Include="Dto\DtoAuth.cs" />
+    <Compile Include="Dto\DtoConfigs.cs" />
     <Compile Include="Dto\DtoDevices.cs" />
     <Compile Include="Enums\DiscoveryCodeEnum.cs" />
     <Compile Include="Enums\TypeStatusDeviceEnum.cs" />
@@ -75,11 +76,15 @@
       <DependentUpon>Service.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\ChangeStatusService.cs" />
+    <Compile Include="Services\WriterAndReadConfigs.cs" />
     <Compile Include="Services\WriterAndReadAuth.cs" />
     <Compile Include="Services\WriterAndReadDevices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EmbeddedResource Include="configs.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

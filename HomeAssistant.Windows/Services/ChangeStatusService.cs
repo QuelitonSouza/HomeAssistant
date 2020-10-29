@@ -1,19 +1,21 @@
 ﻿using HomeAssistant.Windows.Enums;
 using HomeAssistant.Windows.Config;
 using System.Windows.Forms;
+using HomeAssistant.Windows.Dto;
 
 namespace HomeAssistant.Windows.Services
 {
 	public class ChangeStatusService
 	{
+		private DtoConfigs confgis = null;
+
 		public bool ChangeStatusSwitch(StatusDeviceEnum OnOrOff)
 		{
-
 			var resultAuth = new WriterAndReadAuth().ReadAuth();
 			var IsUpdateJson = resultAuth == null || resultAuth.IsExpired;
 			if (IsUpdateJson)
 			{
-				resultAuth = new WebClientApi().auth();
+				resultAuth = new WebClientApi().auth(confgis);
 				new WriterAndReadAuth().WriterAuth(resultAuth);
 			}
 
@@ -26,26 +28,29 @@ namespace HomeAssistant.Windows.Services
 
 			var resultDevice = new WebClientApi(resultAuth).ChangeStatusDevice(resultAuth, resultDevices, (int)OnOrOff);
 			var result = resultDevice != null && resultDevice.header.code == DiscoveryCodeEnum.SUCCESS;
+			
+			confgis.LastStateDevice = OnOrOff;
+			new WriterAndReadConfigs().WriterConfigs(confgis);
 
 			return result;
 		}
 
 		public bool MonitorBatery()
 		{
+			confgis = new WriterAndReadConfigs().ReadConfigs();
 			PowerStatus pwr = SystemInformation.PowerStatus;
-			var BatteryStatus = pwr.BatteryChargeStatus.ToString();
 
-			if (pwr.BatteryLifePercent <= 0.15)
+			if (pwr.BatteryLifePercent <= confgis.BatteryLifePercentLow)
 			{
-				if (pwr.PowerLineStatus == PowerLineStatus.Offline)
+				if (confgis.LastStateDevice == StatusDeviceEnum.off)
 				{
 					return ChangeStatusSwitch(StatusDeviceEnum.on);
 				}
 			}
 
-			if (pwr.BatteryLifePercent >= 0.99)
+			if (pwr.BatteryLifePercent >= confgis.BatteryLifePercentHigh)
 			{
-				if (pwr.PowerLineStatus == PowerLineStatus.Online && BatteryStatus.Contains(BatteryChargeStatus.Charging.ToString()))
+				if (confgis.LastStateDevice == StatusDeviceEnum.on)
 				{
 					return ChangeStatusSwitch(StatusDeviceEnum.off);
 				}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using HomeAssistant.Windows.Enums;
 using Newtonsoft.Json;
 
 namespace HomeAssistant.Windows.Dto

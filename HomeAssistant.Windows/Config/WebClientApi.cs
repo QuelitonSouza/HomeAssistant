@@ -37,13 +37,13 @@ namespace HomeAssistant.Windows.Config
 			return urlBase;
 		}
 
-		public DtoAuth auth()
+		public DtoAuth auth(DtoConfigs configs)
 		{
 			var result = new DtoAuth();
 			var request = new RestRequest(urlLogin, Method.POST);
 			request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-			request.AddParameter("userName", "queliton.pires@gmail.com");
-			request.AddParameter("password", "R#10yfupl");
+			request.AddParameter("userName", configs.UserName);
+			request.AddParameter("password", configs.Password);
 			request.AddParameter("countryCode", "55");
 			request.AddParameter("bizType", "smart_life");
 			request.AddParameter("from", "tuya");
