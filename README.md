@@ -1,4 +1,4 @@
-![GitHub Logo](https://upload.wikimedia.org/wikipedia/commons/7/7a/C_Sharp_logo.svg)
+![GitHub Logo](QuelitonSouza.github.io/image/foto.jpg)
 # HomeAssistant
 
 ## Objective
