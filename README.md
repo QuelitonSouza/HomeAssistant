@@ -1,4 +1,4 @@
-![GitHub Logo](QuelitonSouza.github.io/image/foto.jpg)
+![GitHub Logo](https://quelitonsouza.github.io/image/foto.jpg)
 # HomeAssistant
 
 ## Objective
