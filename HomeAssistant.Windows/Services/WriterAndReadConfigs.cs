@@ -55,5 +55,32 @@ namespace HomeAssistant.Windows.Services
 
 			return result;
 		}
+
+		public List<DtoLog> ReadLogs()
+		{
+			List<DtoLog> result = new List<DtoLog>();
+			var path = new CreateAndValidPath().CreateFolder(PathsEnum.pathLog);
+			var file = string.Format("{0}LOG_{1}.txt", path, DateTime.Now.ToString("ddMMyyyy"));
+			if (File.Exists(file))
+			{
+				StringBuilder fileString = new StringBuilder();
+				using (StreamReader read = new StreamReader(file))
+				{
+					string line;
+					
+					while ((line = read.ReadLine()) != null)
+					{
+						var splitData = line.Split('-');
+						DtoLog item = new DtoLog();
+						item.DateLog = DateTime.Parse(splitData[0].Trim());
+						item.Message = splitData[1].Trim();
+						result.Add(item);
+					}
+				}
+
+			}
+
+			return result;
+		}
 	}
 }

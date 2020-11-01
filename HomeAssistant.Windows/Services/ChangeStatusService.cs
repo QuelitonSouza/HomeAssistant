@@ -29,9 +29,12 @@ namespace HomeAssistant.Windows.Services
 
 			var resultDevice = new WebClientApi(resultAuth).ChangeStatusDevice(resultAuth, resultDevices, (int)OnOrOff);
 			var result = resultDevice != null && resultDevice.header.code == DiscoveryCodeEnum.SUCCESS;
-			
-			confgis.LastStateDevice = OnOrOff;
-			new WriterAndReadConfigs().WriterConfigs(confgis);
+
+			if (confgis != null)
+			{
+				confgis.LastStateDevice = OnOrOff;
+				new WriterAndReadConfigs().WriterConfigs(confgis);
+			}
 
 			return result;
 		}

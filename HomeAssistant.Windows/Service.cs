@@ -1,14 +1,19 @@
-﻿using HomeAssistant.Windows.Services;
+﻿using HomeAssistant.Windows.Forms;
+using HomeAssistant.Windows.Services;
+using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.ServiceProcess;
 using System.Threading;
 using System.Timers;
+using System.Windows.Forms;
 
 namespace HomeAssistant.Windows
 {
 	partial class Service : ServiceBase
 	{
 		private System.Timers.Timer timer;
+
 		public Service()
 		{
 			InitializeComponent();
@@ -25,7 +30,7 @@ namespace HomeAssistant.Windows
 		{
 			timer = new System.Timers.Timer(15000);
 			this.timer.AutoReset = true;
-			this.timer.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimer);
+			this.timer.Elapsed += new System.Timers.ElapsedEventHandler(OnTimer);
 			timer.Start();
 		}
 
