@@ -2,21 +2,17 @@
 using HomeAssistant.Windows.Enums;
 using HomeAssistant.Windows.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HomeAssistant.Windows.Forms
 {
 	public partial class FormMenu : Form
 	{
+		private DtoConfigs dtoConfigs;
 		private bool Filtrar = true;
 		public FormMenu()
 		{
@@ -50,16 +46,16 @@ namespace HomeAssistant.Windows.Forms
 		{
 			try
 			{
-				var resultConfigs = new WriterAndReadConfigs().ReadConfigs();
-				txtUsuario.Text = resultConfigs.UserName;
-				txtSenha.Text = resultConfigs.Password;
-				txtLigar.Text = (resultConfigs.BatteryLifePercentLow * 100).ToString();
-				txtDesligar.Text = (resultConfigs.BatteryLifePercentHigh * 100).ToString();
+				dtoConfigs = new WriterAndReadConfigs().ReadConfigs();
+				txtUsuario.Text = dtoConfigs.UserName;
+				txtSenha.Text = dtoConfigs.Password;
+				txtLigar.Text = (dtoConfigs.BatteryLifePercentLow * 100).ToString();
+				txtDesligar.Text = (dtoConfigs.BatteryLifePercentHigh * 100).ToString();
 
 				cbxStatus.DataSource = Enum.GetValues(typeof(StatusDeviceEnum));
-				cbxStatus.SelectedItem = resultConfigs.LastStateDevice;
+				cbxStatus.SelectedItem = dtoConfigs.LastStateDevice;
 
-				btnTestar.Text = resultConfigs.LastStateDevice == StatusDeviceEnum.off ? "Ligar":  "Desligar";
+				btnTestar.Text = dtoConfigs.LastStateDevice == StatusDeviceEnum.off ? "Ligar":  "Desligar";
 			}
 			catch (Exception ex)
 			{
@@ -101,7 +97,6 @@ namespace HomeAssistant.Windows.Forms
 			{
 				Cursor.Current = Cursors.WaitCursor;
 
-				var dtoConfigs = new DtoConfigs();
 				dtoConfigs.UserName = txtUsuario.Text;
 				dtoConfigs.Password = txtSenha.Text;
 				dtoConfigs.BatteryLifePercentLow = float.Parse(txtLigar.Text) / 100;
@@ -109,7 +104,7 @@ namespace HomeAssistant.Windows.Forms
 				dtoConfigs.LastStateDevice = (StatusDeviceEnum)cbxStatus.SelectedItem;
 
 				new WriterAndReadConfigs().WriterConfigs(dtoConfigs);
-				Thread.Sleep(TimeSpan.FromSeconds(2));
+				Thread.Sleep(TimeSpan.FromSeconds(1));
 			}
 			catch (Exception ex)
 			{
@@ -127,9 +122,9 @@ namespace HomeAssistant.Windows.Forms
 			{
 				Cursor.Current = Cursors.WaitCursor;
 
-				if(btnTestar.Text == "Ligar")
+				if (btnTestar.Text == "Ligar")
 				{
-					new ChangeStatusService().ChangeStatusSwitch(StatusDeviceEnum.on);
+					new ChangeStatusService().ChangeStatusSwitch(StatusDeviceEnum.on, dtoConfigs);
 					cbxStatus.SelectedItem = StatusDeviceEnum.on;
 					btnTestar.Text = "Desligar";
 					
@@ -138,7 +133,7 @@ namespace HomeAssistant.Windows.Forms
 
 				if (btnTestar.Text == "Desligar")
 				{
-					new ChangeStatusService().ChangeStatusSwitch(StatusDeviceEnum.off);
+					new ChangeStatusService().ChangeStatusSwitch(StatusDeviceEnum.off, dtoConfigs);
 					cbxStatus.SelectedItem = StatusDeviceEnum.off;
 					btnTestar.Text = "Ligar";
 					
@@ -147,7 +142,7 @@ namespace HomeAssistant.Windows.Forms
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.Message.ToString(), "Erro", MessageBoxButtons.OK);
+				MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK);
 			}
 			finally
 			{

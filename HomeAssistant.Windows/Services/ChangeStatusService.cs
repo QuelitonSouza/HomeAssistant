@@ -10,8 +10,10 @@ namespace HomeAssistant.Windows.Services
 	{
 		private DtoConfigs confgis = null;
 
-		public bool ChangeStatusSwitch(StatusDeviceEnum OnOrOff)
+		public bool ChangeStatusSwitch(StatusDeviceEnum OnOrOff, DtoConfigs pConfgis = null)
 		{
+			confgis = pConfgis != null ? pConfgis : confgis;
+
 			var resultAuth = new WriterAndReadAuth().ReadAuth();
 			var IsUpdateJson = resultAuth == null || resultAuth.IsExpired;
 			if (IsUpdateJson)
