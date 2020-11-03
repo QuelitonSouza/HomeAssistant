@@ -2,7 +2,9 @@
 using HomeAssistant.Windows.Enums;
 using HomeAssistant.Windows.Services;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -13,13 +15,29 @@ namespace HomeAssistant.Windows.Forms
 	public partial class FormMenu : Form
 	{
 		private DtoConfigs dtoConfigs;
+		private dtoChart dtoChart;
 		private bool Filtrar = true;
 		public FormMenu()
 		{
-			InitializeComponent();
-			LoadConfigs();
-		}
+			try
+			{
+				InitializeComponent();
+				LoadConfigs();
 
+				dtoChart = LoadChart();
+				this.chart1.Series[0].Points.DataBindXY(dtoChart.On.Select(x => x.Index).ToList(), dtoChart.On.Select(x => x.Time).ToList());
+				this.chart1.Series[1].Points.DataBindXY(dtoChart.Off.Select(x => x.Index).ToList(), dtoChart.Off.Select(x => x.Time).ToList());
+
+
+				Rectangle workingArea = Screen.GetWorkingArea(this);
+				this.Location = new Point(workingArea.Right - Size.Width,
+										  workingArea.Bottom - Size.Height);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message.ToString(), "Erro", MessageBoxButtons.OK);
+			}
+		}
 
 		private void ReadLog_Click(object sender, EventArgs e)
 		{
@@ -154,6 +172,11 @@ namespace HomeAssistant.Windows.Forms
 		{
 			Filtrar = true;
 			ReadLog_Click(sender, e);
+		}
+
+		private dtoChart LoadChart()
+		{
+			return new WriterAndReadConfigs().ReadOnAndOffLog();
 		}
 	}
 }
