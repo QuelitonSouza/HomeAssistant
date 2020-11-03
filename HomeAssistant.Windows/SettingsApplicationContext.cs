@@ -31,6 +31,8 @@ namespace HomeAssistant.Windows
 				})
 			};
 
+			trayIcon.DoubleClick += new EventHandler(this.Openmenu);
+
 #if (DEBUG)
 			trayIcon.Text = "Home Assistant - TESTE";
 			trayIcon.Visible = true;

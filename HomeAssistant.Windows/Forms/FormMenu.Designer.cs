@@ -28,6 +28,11 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+			System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMenu));
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -51,18 +56,27 @@
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.txtDesligar = new System.Windows.Forms.TextBox();
 			this.btnSalvar = new System.Windows.Forms.Button();
+			this.tabGraficos = new System.Windows.Forms.TabPage();
+			this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+			this.dtoChartOffBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.dtoChartOnBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.DataGridLog)).BeginInit();
 			this.tabConfigs.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
+			this.tabGraficos.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dtoChartOffBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dtoChartOnBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabControl1
 			// 
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabConfigs);
+			this.tabControl1.Controls.Add(this.tabGraficos);
 			this.tabControl1.Location = new System.Drawing.Point(1, 0);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
@@ -272,6 +286,65 @@
 			this.btnSalvar.UseVisualStyleBackColor = true;
 			this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
 			// 
+			// tabGraficos
+			// 
+			this.tabGraficos.Controls.Add(this.chart1);
+			this.tabGraficos.Location = new System.Drawing.Point(4, 22);
+			this.tabGraficos.Name = "tabGraficos";
+			this.tabGraficos.Size = new System.Drawing.Size(506, 353);
+			this.tabGraficos.TabIndex = 2;
+			this.tabGraficos.Text = "Gráficos";
+			this.tabGraficos.UseVisualStyleBackColor = true;
+			// 
+			// chart1
+			// 
+			chartArea1.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
+			chartArea1.BackImageWrapMode = System.Windows.Forms.DataVisualization.Charting.ChartImageWrapMode.Unscaled;
+			chartArea1.BorderColor = System.Drawing.Color.Empty;
+			chartArea1.Name = "ChartArea1";
+			this.chart1.ChartAreas.Add(chartArea1);
+			legend1.Name = "Legend1";
+			this.chart1.Legends.Add(legend1);
+			this.chart1.Location = new System.Drawing.Point(7, 12);
+			this.chart1.Name = "chart1";
+			series1.BorderWidth = 3;
+			series1.ChartArea = "ChartArea1";
+			series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series1.Color = System.Drawing.Color.Green;
+			series1.EmptyPointStyle.IsValueShownAsLabel = true;
+			series1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+			series1.IsValueShownAsLabel = true;
+			series1.LabelForeColor = System.Drawing.Color.Green;
+			series1.Legend = "Legend1";
+			series1.Name = "Minutos";
+			series1.SmartLabelStyle.CalloutStyle = System.Windows.Forms.DataVisualization.Charting.LabelCalloutStyle.None;
+			series1.XValueMember = "Description";
+			series1.YValueMembers = "Time";
+			series2.BorderWidth = 3;
+			series2.ChartArea = "ChartArea1";
+			series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series2.Color = System.Drawing.Color.Red;
+			series2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+			series2.IsValueShownAsLabel = true;
+			series2.LabelForeColor = System.Drawing.Color.Red;
+			series2.Legend = "Legend1";
+			series2.Name = "Bateria";
+			series2.XValueMember = "Description";
+			series2.YValueMembers = "Time";
+			this.chart1.Series.Add(series1);
+			this.chart1.Series.Add(series2);
+			this.chart1.Size = new System.Drawing.Size(492, 334);
+			this.chart1.TabIndex = 0;
+			this.chart1.Text = "chart1";
+			// 
+			// dtoChartOffBindingSource
+			// 
+			this.dtoChartOffBindingSource.DataSource = typeof(HomeAssistant.Windows.Dto.DtoChartOff);
+			// 
+			// dtoChartOnBindingSource
+			// 
+			this.dtoChartOnBindingSource.DataSource = typeof(HomeAssistant.Windows.Dto.DtoChartOn);
+			// 
 			// FormMenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -282,6 +355,7 @@
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "FormMenu";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Configurações";
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
@@ -293,6 +367,10 @@
 			this.panel2.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
+			this.tabGraficos.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dtoChartOffBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dtoChartOnBindingSource)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -321,5 +399,9 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button btnFiltrar;
 		private System.Windows.Forms.TextBox txtFiltrar;
+		private System.Windows.Forms.TabPage tabGraficos;
+		private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+		private System.Windows.Forms.BindingSource dtoChartOnBindingSource;
+		private System.Windows.Forms.BindingSource dtoChartOffBindingSource;
 	}
 }
