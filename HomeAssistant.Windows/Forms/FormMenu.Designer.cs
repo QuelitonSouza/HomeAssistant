@@ -316,7 +316,7 @@
 			series1.IsValueShownAsLabel = true;
 			series1.LabelForeColor = System.Drawing.Color.Green;
 			series1.Legend = "Legend1";
-			series1.Name = "Minutos";
+			series1.Name = "Carregando";
 			series1.SmartLabelStyle.CalloutStyle = System.Windows.Forms.DataVisualization.Charting.LabelCalloutStyle.None;
 			series1.XValueMember = "Description";
 			series1.YValueMembers = "Time";
