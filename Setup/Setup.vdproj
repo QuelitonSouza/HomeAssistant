@@ -21,12 +21,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_13B0E7FA49124611980A7093E12F3DF2"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_87688F2C9F6143112296C6C255A1ECFA"
         "OwnerKey" = "8:_033A265D6A12416B843CE2E2BF84BDC3"
         "MsmSig" = "8:_UNDEFINED"
@@ -52,12 +46,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BA4EEB3CB6951FB017E3AEDB556BE4DB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_033A265D6A12416B843CE2E2BF84BDC3"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -71,6 +59,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E15035C137921A194A0BAC41008C3CBF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BA4EEB3CB6951FB017E3AEDB556BE4DB"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -91,6 +85,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -107,6 +117,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -136,26 +154,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_13B0E7FA49124611980A7093E12F3DF2"
-            {
-            "SourcePath" = "8:..\\HomeAssistant.Windows\\configs.json"
-            "TargetName" = "8:configs.json"
-            "Tag" = "8:"
-            "Folder" = "8:_2D89A69872A742C4890B5858CBD938AA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_87688F2C9F6143112296C6C255A1ECFA"
             {
             "AssemblyRegister" = "3:1"
@@ -337,7 +335,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:HomeAssistant"
         "ProductCode" = "8:{2D969F4B-1FFF-414D-B149-B6C1909F81EA}"
-        "PackageCode" = "8:{466A5D5F-081E-4D6F-8855-99A3E1AE54BD}"
+        "PackageCode" = "8:{76EA5DFE-D583-44F5-81DC-6DF563ED63A5}"
         "UpgradeCode" = "8:{394DCFCA-D9D7-4818-BCB0-52BF8D6B525B}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -886,7 +884,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_033A265D6A12416B843CE2E2BF84BDC3"
             {
-            "SourcePath" = "8:..\\HomeAssistant.Windows\\obj\\Release\\HomeAssistant.Windows.exe"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_2D89A69872A742C4890B5858CBD938AA"
