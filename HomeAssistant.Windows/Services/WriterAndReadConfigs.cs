@@ -43,7 +43,7 @@ namespace HomeAssistant.Windows.Services
 		private void WriterOnAndOffLog(string logMessage)
 		{
 			var path = new CreateAndValidPath().CreateFolder(PathsEnum.pathLog);
-			var nomeFile = string.Format("ON_AND_OFF_LOG.txt", path);
+			var nomeFile = string.Format("{0}ON_AND_OFF_LOG.txt", path);
 			using (StreamWriter writer = new StreamWriter(nomeFile, append: true))
 			{
 				string message = string.Format("{0} - {1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), logMessage);
@@ -107,6 +107,7 @@ namespace HomeAssistant.Windows.Services
 			var result = new dtoChart();
 			var path = new CreateAndValidPath().CreateFolder(PathsEnum.pathLog);
 			var file = string.Format("{0}ON_AND_OFF_LOG.txt", path);
+			new WriterAndReadConfigs().WriterLog(file);
 			if (File.Exists(file))
 			{
 				using (StreamReader read = new StreamReader(file))
@@ -147,11 +148,8 @@ namespace HomeAssistant.Windows.Services
 							itemOn.Time = Math.Round((dateFimLog.Subtract(dateOnLog).TotalMinutes),2);
 							result.On.Add(itemOn);
 						}
-						
-						
 					}
 				}
-
 			}
 
 			return result;

@@ -32,12 +32,14 @@ namespace HomeAssistant.Windows.Services
 			var resultDevice = new WebClientApi(resultAuth).ChangeStatusDevice(resultAuth, resultDevices, (int)OnOrOff);
 			var result = resultDevice != null && resultDevice.header.code == DiscoveryCodeEnum.SUCCESS;
 
+			new WriterAndReadConfigs().WriterLog(OnOrOff == StatusDeviceEnum.on ? "Ligar" : "Desligar");
+
 			if (confgis != null)
 			{
 				confgis.LastStateDevice = OnOrOff;
 				new WriterAndReadConfigs().WriterConfigs(confgis);
 			}
-
+			
 			return result;
 		}
 
@@ -53,7 +55,6 @@ namespace HomeAssistant.Windows.Services
 				{
 					if (confgis.LastStateDevice == StatusDeviceEnum.off)
 					{
-						new WriterAndReadConfigs().WriterLog("Ligar");
 						return ChangeStatusSwitch(StatusDeviceEnum.on);
 					}
 				}
@@ -62,7 +63,6 @@ namespace HomeAssistant.Windows.Services
 				{
 					if (confgis.LastStateDevice == StatusDeviceEnum.on)
 					{
-						new WriterAndReadConfigs().WriterLog("Desligar");
 						return ChangeStatusSwitch(StatusDeviceEnum.off);
 					}
 				}
